@@ -3,9 +3,12 @@ require 'dotenv'
 require "openssl"
 require 'base64'
 require 'url_safe_base64'
+require 'json'
 Dotenv.load
 
 class Culqiruby
+   attr_accessor :codigo_comercio, :numero_pedido, :moneda, :monto, :descripcion, :correo_electronico, :cod_pais, :ciudad, :direccion, :num_tel, :id_usuario_comercio, :nombres, :apellidos
+  
   
   def initialize
     # Instance variables
