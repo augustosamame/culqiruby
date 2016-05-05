@@ -1,10 +1,11 @@
 require 'culqiruby/version'
-require 'dotenv'
 require "openssl"
 require 'base64'
 require 'url_safe_base64'
 require 'json'
-Dotenv.load
+# .env required for internal gem development only as gem users will use their own environment variable managers
+# require 'dotenv' 
+# Dotenv.load
 
 class Culqiruby
    attr_accessor :codigo_comercio, :numero_pedido, :moneda, :monto, :descripcion, :correo_electronico, :cod_pais, :ciudad, :direccion, :num_tel, :id_usuario_comercio, :nombres, :apellidos
