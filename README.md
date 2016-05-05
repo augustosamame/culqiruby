@@ -25,11 +25,13 @@ La versión 1.x de este gem podrá ser usada en producción con la versión 1.0 
 
 Requerimientos: este gem requiere de la existencia de las siguientes environment variables en el ambiente de desarrollo / Pruebas / Producción:
 
+
 CULQI_KEY="ingrese la llave entregada por Culqi aquí"
 
 CULQI_ENDPOINT="ingrese el dominio del API de Culqi aquí"
 
 CULQI_CODIGO_COMERCIO="ingrese el código de comercio asignado por Culqi aquí"
+
 
 Para definir los environments variables en su ambiente recomendamos:
 
@@ -46,7 +48,7 @@ https://github.com/laserlemon/figaro
 Para utilizar los métodos, deberá crear una instancia de la clase Culqiruby así:
 
 ```ruby
-culqi=Culqiruby.new
+culqi = Culqiruby.new
 ```
 ## encriptar
 
@@ -54,7 +56,7 @@ culqi=Culqiruby.new
 texto_encriptado = culqi.encriptar('Texto a encriptar')
 ```
 
-El método devolverá un texto_encriptado según los requerimientos de Culqi haciendo uso de la llave entregada por Culqi y especificada en los environment variables
+El método encriptar devolverá un texto_encriptado según los requerimientos de Culqi haciendo uso de la llave entregada por Culqi y especificada en los environment variables
 
 ## desencriptar
 
@@ -62,53 +64,66 @@ El método devolverá un texto_encriptado según los requerimientos de Culqi hac
 texto_desencriptado = culqi.desencriptar('Texto a desencriptar')
 ```
 
-El método devolverá un texto_desencriptado según las especificaciones de Culqi haciendo uso de la llave entregada por Culqi y especificada en los environment variables y del IV que es parte del mismo texto a desencriptar
+El método desencriptar devolverá un texto_desencriptado según las especificaciones de Culqi haciendo uso de la llave entregada por Culqi y especificada en los environment variables y del IV que es parte del mismo texto a desencriptar
 
 ## crear_venta
 
-Este método permitirá crear una venta en Culqi, para luego invocar el formulario según lo indicado por la documentación Culqi
-Para que la creación de la venta sea exitosa, los siguientes atributos deberán haber sido seteados antes de llamar al método
+Este método permitirá crear una venta en Culqi, para luego invocar el formulario según lo indicado por la documentación Culqi.
+Para que la creación de la venta sea exitosa, los siguientes atributos deberán haber sido seteados antes de llamar al método:
 
 culqi.numero_pedido
+
 culqi.moneda
+
 culqi.monto
+
 culqi.descripcion
+
 culqi.correo_electronico
+
 culqi.cod_pais
+
 culqi.ciudad
+
 culqi.direccion
+
 culqi.num_tel
+
 culqi.id_usuario_comercio
+
 culqi.nombres
+
 culqi.apellidos
+
 
 Ejemplo:
 
 ```ruby
 #instanciamos la clase Culqiruby
-culqi=Culqiruby.new
+culqi = Culqiruby.new
 #seteamos los atributos necesarios para crear la venta
-culqi.numero_pedido='1234'
-culqi.moneda='PEN'
-culqi.monto='5000'
-culqi.descripcion='Venta de prueba'
-culqi.correo_electronico='augustosamame@gmail.com'
-culqi.cod_pais='PE'
-culqi.ciudad='Lima'
-culqi.direccion='Av. Javier Prado 1750, San Borja'
-culqi.num_tel='986977321'
-culqi.id_usuario_comercio='1'
-culqi.nombres='Augusto'
-culqi.apellidos='Samamé'
+culqi.numero_pedido = '1234'
+culqi.moneda = 'PEN'
+culqi.monto = '5000'
+culqi.descripcion = 'Venta de prueba'
+culqi.correo_electronico = 'augustosamame@gmail.com'
+culqi.cod_pais = 'PE'
+culqi.ciudad = 'Lima'
+culqi.direccion = 'Av. Javier Prado 1750, San Borja'
+culqi.num_tel = '986977321'
+culqi.id_usuario_comercio = '1'
+culqi.nombres = 'Augusto'
+culqi.apellidos = 'Samamé'
 #creamos la venta
-respuesta=culqi.crearventa
+venta = culqi.crear_venta
 ```
 
-El método crearventa devolverá un arreglo con 2 valores: el primer valor es un string con el resultado de la creación de la venta y el segundo valor un hash con la respuesta del API de Culqi 
+El método crear_venta devolverá un arreglo con 2 valores: el primer valor es un string con el resultado de la creación de la venta y el segundo valor un hash con la respuesta del API de Culqi 
 
 Ej de respuesta exitosa:
 
 ["Venta creada exitosamente", {"mensaje_respuesta_usuario"=>"", "monto"=>"5000", "mensaje_respuesta"=>"Venta creada exitosamente.", "ticket"=>"6F6tIyUlOmrMKo3EI5rxcsvamwHRrKAEgsb", "codigo_respuesta"=>"venta_registrada", "numero_pedido"=>"1234", "codigo_comercio"=>"3zMquUkbF5s8", "informacion_venta"=>"EtEfsG1iD1Ur8YYHO98hRX1kXE2KOVlq4vbmmLVkKKX5eCBUFAHeuAhRrefRIwuUAHTWH6tiNWIthJ67Fi11LGkBEF861R2iQNjG5vsHSy8RsFuXfUU_zKTYYwGhaYkR4tAewbDRnBX3YKJOxPcMqA=="}] 
+
 
 Ej de respuesta con error
 
