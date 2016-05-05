@@ -18,7 +18,7 @@ Or install it yourself as:
 
     $ gem install culqiruby
 
-## Usage
+## Forma de uso
 
 La versión 0.x de este gem corresponde a una versión en desarollo.
 La versión 1.x de este gem podrá ser usada en producción con la versión 1.0 del API de Culqi
@@ -26,7 +26,9 @@ La versión 1.x de este gem podrá ser usada en producción con la versión 1.0 
 Requerimientos: este gem requiere de la existencia de las siguientes environment variables en el ambiente de desarrollo / Pruebas / Producción:
 
 CULQI_KEY="ingrese la llave entregada por Culqi aquí"
+
 CULQI_ENDPOINT="ingrese el dominio del API de Culqi aquí"
+
 CULQI_CODIGO_COMERCIO="ingrese el código de comercio asignado por Culqi aquí"
 
 Para definir los environments variables en su ambiente recomendamos:
@@ -39,25 +41,30 @@ Rails:
 figaro gem
 https://github.com/laserlemon/figaro
 
-Métodos
+## Métodos
 
 Para utilizar los métodos, deberá crear una instancia de la clase Culqiruby así:
 
+```ruby
 culqi=Culqiruby.new
+```
+## encriptar
 
-encriptar
-
+```ruby
 texto_encriptado = culqi.encriptar('Texto a encriptar')
+```
 
 El método devolverá un texto_encriptado según los requerimientos de Culqi haciendo uso de la llave entregada por Culqi y especificada en los environment variables
 
-desencriptar
+## desencriptar
 
+```ruby
 texto_desencriptado = culqi.desencriptar('Texto a desencriptar')
+```
 
 El método devolverá un texto_desencriptado según las especificaciones de Culqi haciendo uso de la llave entregada por Culqi y especificada en los environment variables y del IV que es parte del mismo texto a desencriptar
 
-crear_venta
+## crear_venta
 
 Este método permitirá crear una venta en Culqi, para luego invocar el formulario según lo indicado por la documentación Culqi
 Para que la creación de la venta sea exitosa, los siguientes atributos deberán haber sido seteados antes de llamar al método
@@ -77,6 +84,7 @@ culqi.apellidos
 
 Ejemplo:
 
+```ruby
 #instanciamos la clase Culqiruby
 culqi=Culqiruby.new
 #seteamos los atributos necesarios para crear la venta
@@ -94,6 +102,7 @@ culqi.nombres='Augusto'
 culqi.apellidos='Samamé'
 #creamos la venta
 respuesta=culqi.crearventa
+```
 
 El método crearventa devolverá un arreglo con 2 valores: el primer valor es un string con el resultado de la creación de la venta y el segundo valor un hash con la respuesta del API de Culqi 
 
