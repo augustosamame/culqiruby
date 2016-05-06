@@ -1,6 +1,7 @@
 require 'culqiruby/version'
 require "openssl"
 require 'base64'
+require 'net/http'
 require 'url_safe_base64'
 require 'json'
 # .env required for internal gem development only as gem users will use their own environment variable managers
@@ -16,10 +17,7 @@ class Culqiruby
     # Culqiruby gem requires these 3 environment variables to be set in order to work properly
     variables = %w{CULQI_KEY CULQI_ENDPOINT CULQI_CODIGO_COMERCIO}
     missing = variables - ENV.keys
-    unless missing.empty?
-      raise "The following env vars are missing and are needed to use this gem: #{missing.join(', ')}."
-    end
-    #raise Culqiruby, '1 or more required env vars are missing' unless (defined? ENV['CULQI_KEY'] || defined? ENV['CULQI_ENDPOINT'] || defined? ENV['CULQI_CODIGO_COMERCIO'])
+    raise "The following env vars are missing and are needed to use this gem: #{missing.join(', ')}." unless missing.empty?
     @culqi_key = ENV['CULQI_KEY']
     @culqi_endpoint = ENV['CULQI_ENDPOINT']
     @culqi_codigo_comercio = ENV['CULQI_CODIGO_COMERCIO']
