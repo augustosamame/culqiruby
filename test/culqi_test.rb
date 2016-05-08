@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CulqirubyTest < Minitest::Test
+class CulqiTest < Minitest::Test
   def test_that_it_has_a_version_number
     refute_nil ::Culqiruby::VERSION
   end

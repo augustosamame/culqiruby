@@ -7,7 +7,7 @@ require 'culqi/sale'
 
 class Culqi
   ERROR_MESSAGES = {
-    failed_request: 'Error al crear venta, HTTP code: '
+    failed_request: 'Error al crear venta, HTTP code:'
   }
 
   def self.client

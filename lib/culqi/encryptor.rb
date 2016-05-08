@@ -11,7 +11,7 @@ module Culqi
       Base64.urlsafe_encode64(decoded)
     end
 
-    def desencrypt(encrypted)
+    def decrypt(encrypted)
       decoded   = Base64.urlsafe_decode64(encrypted)
       iv        = decoded.slice!(0, 16)
       decipher  = build_cipher(:decrypt, iv)
@@ -23,11 +23,11 @@ module Culqi
     private
 
     def build_cipher(type, iv = nil)
-      OpenSSL::Cipher::AES.new(256, :CBC).tap do |cipher|
-        cipher.send(type)
-        cipher.key = @key
-        cipher.iv  = iv || cipher.random_iv
-      end
+      cipher = OpenSSL::Cipher::AES.new(256, :CBC)
+      cipher.send(type)
+      cipher.key = @key
+      cipher.iv  = iv || cipher.random_iv
+      cipher
     end
   end
 end
