@@ -35,7 +35,7 @@ CULQI_CODIGO_COMERCIO="ingrese el código de comercio asignado por Culqi aquí"
 
 Para definir los environments variables en su ambiente recomendamos:
 
-Ruby: 
+Ruby:
 dotenv gem
 https://github.com/bkeepers/dotenv
 
@@ -100,34 +100,34 @@ Ejemplo:
 
 ```ruby
 #instanciamos la clase Culqiruby
-culqi = Culqiruby.new
-#seteamos los atributos necesarios para crear la venta
-culqi.numero_pedido = '1234'
-culqi.moneda = 'PEN'
-culqi.monto = '5000'
-culqi.descripcion = 'Venta de prueba'
-culqi.correo_electronico = 'augustosamame@gmail.com'
-culqi.cod_pais = 'PE'
-culqi.ciudad = 'Lima'
-culqi.direccion = 'Av. Javier Prado 1750, San Borja'
-culqi.num_tel = '986977321'
-culqi.id_usuario_comercio = '1'
-culqi.nombres = 'Augusto'
-culqi.apellidos = 'Samamé'
+culqi = Culqi.client
+
 #creamos la venta
-venta = culqi.crear_venta
+venta = culqi.crear_venta numero_pedido:       '1234'
+                          moneda:              'PEN'
+                          monto:               '5000'
+                          descripcion:         'Venta de prueba'
+                          correo_electronico:  'augustosamame@gmail.com'
+                          cod_pais:            'PE'
+                          ciudad:              'Lima'
+                          direccion:           'Av. Javier Prado 1750, San Borja'
+                          num_tel:             '986977321'
+                          id_usuario_comercio: '1'
+                          nombres:             'Augusto'
+                          apellidos:           'Samamé'
+
 ```
 
-El método crear_venta devolverá un arreglo con 2 valores: el primer valor es un string con el resultado de la creación de la venta y el segundo valor un hash con la respuesta del API de Culqi 
+El método crear_venta devolverá un arreglo con 2 valores: el primer valor es un string con el resultado de la creación de la venta y el segundo valor un hash con la respuesta del API de Culqi
 
 Ej de respuesta exitosa:
 
-["Venta creada exitosamente", {"mensaje_respuesta_usuario"=>"", "monto"=>"5000", "mensaje_respuesta"=>"Venta creada exitosamente.", "ticket"=>"6F6tIyUlOmrMKo3EI5rxcsvamwHRrKAEgsb", "codigo_respuesta"=>"venta_registrada", "numero_pedido"=>"1234", "codigo_comercio"=>"3zMquUkbF5s8", "informacion_venta"=>"EtEfsG1iD1Ur8YYHO98hRX1kXE2KOVlq4vbmmLVkKKX5eCBUFAHeuAhRrefRIwuUAHTWH6tiNWIthJ67Fi11LGkBEF861R2iQNjG5vsHSy8RsFuXfUU_zKTYYwGhaYkR4tAewbDRnBX3YKJOxPcMqA=="}] 
+{"mensaje_respuesta_usuario"=>"", "monto"=>"5000", "mensaje_respuesta"=>"Venta creada exitosamente.", "ticket"=>"6F6tIyUlOmrMKo3EI5rxcsvamwHRrKAEgsb", "codigo_respuesta"=>"venta_registrada", "numero_pedido"=>"1234", "codigo_comercio"=>"3zMquUkbF5s8", "informacion_venta"=>"EtEfsG1iD1Ur8YYHO98hRX1kXE2KOVlq4vbmmLVkKKX5eCBUFAHeuAhRrefRIwuUAHTWH6tiNWIthJ67Fi11LGkBEF861R2iQNjG5vsHSy8RsFuXfUU_zKTYYwGhaYkR4tAewbDRnBX3YKJOxPcMqA=="}
 
 
 Ej de respuesta con error
 
-["Error al crear venta", {"mensaje_respuesta_usuario"=>"", "mensaje_respuesta"=>"La transacción ya existe. ", "codigo_respuesta"=>"parametro_invalido", "codigo_comercio"=>"3zMquUkbF5s8"}] 
+{"mensaje_respuesta_usuario"=>"", "mensaje_respuesta"=>"La transacción ya existe. ", "codigo_respuesta"=>"parametro_invalido", "codigo_comercio"=>"3zMquUkbF5s8"}
 
 
 ## Development
@@ -144,4 +144,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/august
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
