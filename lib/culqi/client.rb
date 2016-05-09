@@ -23,14 +23,14 @@ module Culqi
     private
 
     def http_client
-      http             = Net::HTTP.new(url.host, url.port)
+      http             = Net::HTTP.new(@url.host, @url.port)
       http.use_ssl     = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       http
     end
 
     def http_request(payload)
-      request                 = Net::HTTP::Post.new(url)
+      request                 = Net::HTTP::Post.new(@url)
       request['content-type'] = 'application/json'
       request.body            = { codigo_comercio: @code, informacion_venta: encryptor.encrypt(payload) }.to_json
       request
