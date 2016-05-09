@@ -100,7 +100,7 @@ Ejemplo:
 
 ```ruby
 #instanciamos la clase Culqiruby
-culqi = Culqi.client
+culqi = Culqi.default_client
 
 #creamos la venta
 venta = culqi.crear_venta numero_pedido:       '1234'
