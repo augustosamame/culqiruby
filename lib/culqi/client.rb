@@ -39,7 +39,7 @@ module Culqi
     def http_response(request)
       response = http_client.request(request)
 
-      raise "#{ MESSAGES[:failed_request] } #{ response.code }" unless response.code == '200'
+      raise "#{ ERROR_MESSAGES[:failed_request] } #{ response.code }" unless response.code == '200'
 
       JSON.parse(encryptor.decrypt(response))
     end
