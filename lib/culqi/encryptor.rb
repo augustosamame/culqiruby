@@ -8,28 +8,27 @@ module Culqi
     end
 
     def encrypt(plaintext)
-      cipher  = build_cipher(:encrypt)
-      decoded = cipher.iv + cipher.update(plaintext) + cipher.final
+      cipher    = build_cipher(:encrypt)
+      cipher.iv = iv = cipher.random_iv
+      decoded   = iv + cipher.update(plaintext) + cipher.final
 
       Base64.urlsafe_encode64(decoded)
     end
 
     def decrypt(encrypted)
-      decoded   = Base64.urlsafe_decode64(encrypted)
-      iv        = decoded.slice!(0, 16)
-      decipher  = build_cipher(:decrypt, iv)
-      plaintext = decipher.update(decoded) + decipher.final
+      decoded     = Base64.urlsafe_decode64(encrypted)
+      decipher    = build_cipher(:decrypt)
+      decipher.iv = decoded.slice!(0, 16)
 
-      plaintext
+      decipher.update(decoded) + decipher.final
     end
 
     private
 
-    def build_cipher(type, iv = nil)
+    def build_cipher(type)
       cipher = OpenSSL::Cipher::AES.new(256, :CBC)
       cipher.send(type)
       cipher.key = @key
-      cipher.iv  = iv || cipher.random_iv
       cipher
     end
   end
