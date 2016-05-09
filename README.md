@@ -1,6 +1,6 @@
 # Culqiruby
 
-This gem allows your rails 3/4/5 app to quickly integrate with Culqi Payment processor. It handles Culqi's flavor of encryption, decryption and Culqi ticket creation.
+This gem allows your Rails or Ruby app to quickly integrate with Culqi Payment processor. It handles Culqi's flavor of encryption, decryption and Culqi ticket creation.
 
 ## Installation
 
@@ -20,8 +20,9 @@ Or install it yourself as:
 
 ## Forma de uso
 
-La versión 0.x de este gem corresponde a una versión en desarollo.
 La versión 1.x de este gem podrá ser usada en producción con la versión 1.0 del API de Culqi
+Compatible con Ruby versiones 1.9.2 y superior
+Compatible con Rails versiones 3.2 y superior
 
 Requerimientos: este gem requiere de la existencia de las siguientes environment variables en el ambiente de desarrollo / Pruebas / Producción:
 
