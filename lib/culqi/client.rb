@@ -1,7 +1,7 @@
 require 'net/http'
 require 'json'
 
-module Culqui
+module Culqi
   class Client
     ERROR_MESSAGES = {
       failed_request: 'Error al crear venta, HTTP code:'
@@ -14,7 +14,7 @@ module Culqui
     end
 
     def crear_venta(attrs)
-      sale    = Culqui::Sale.new(attrs)
+      sale    = Culqi::Sale.new(attrs)
       request = http_request(sale.payload)
 
       http_response(request)
@@ -45,7 +45,7 @@ module Culqui
     end
 
     def encryptor
-      @encryptor ||= Culqui::Encryptor.new(@key)
+      @encryptor ||= Culqi::Encryptor.new(@key)
     end
   end
 end

@@ -9,7 +9,7 @@ module Culqi
 
     def encrypt(plaintext)
       cipher  = build_cipher(:encrypt)
-      decoded = iv + cipher.update(plaintext) + cipher.final
+      decoded = cipher.iv + cipher.update(plaintext) + cipher.final
 
       Base64.urlsafe_encode64(decoded)
     end
