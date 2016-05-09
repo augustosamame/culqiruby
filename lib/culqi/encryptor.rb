@@ -1,6 +1,9 @@
+require 'openssl'
+require 'base64'
+
 module Culqi
   class Encryptor
-    def initialize(key = ENV['CULQI_KEY'])
+    def initialize(key)
       @key = Base64.urlsafe_decode64(key)
     end
 

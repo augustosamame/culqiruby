@@ -1,10 +1,10 @@
 module Culqi
-  DEFAULTS = {
-    moneda:   'PEN',
-    cod_pais: 'PE'
-  }
-
   class Sale
+    DEFAULTS = {
+      moneda:   'PEN',
+      cod_pais: 'PE'
+    }
+
     attr_accessor :codigo_comercio,
                   :numero_pedido,
                   :moneda,
