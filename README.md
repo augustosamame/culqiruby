@@ -21,7 +21,7 @@ Or install it yourself as:
 ## Forma de uso
 
 La versión 1.x de este gem podrá ser usada en producción con la versión 1.0 del API de Culqi
-Compatible con Ruby versiones 1.9.2 y superior
+Compatible con Ruby versiones 2.2 y superior
 Compatible con Rails versiones 3.2 y superior
 
 Requerimientos: este gem requiere de la existencia de las siguientes environment variables en el ambiente de desarrollo / Pruebas / Producción:
@@ -46,55 +46,34 @@ https://github.com/laserlemon/figaro
 
 ## Métodos
 
-Para utilizar los métodos, deberá crear una instancia de la clase Culqiruby así:
-
-```ruby
-culqi = Culqiruby.new
-```
-## encriptar
-
-```ruby
-texto_encriptado = culqi.encriptar('Texto a encriptar')
-```
-
-El método encriptar devolverá un texto_encriptado según los requerimientos de Culqi haciendo uso de la llave entregada por Culqi y especificada en los environment variables
-
-## desencriptar
-
-```ruby
-texto_desencriptado = culqi.desencriptar('Texto a desencriptar')
-```
-
-El método desencriptar devolverá un texto_desencriptado según las especificaciones de Culqi haciendo uso de la llave entregada por Culqi y especificada en los environment variables y del IV que es parte del mismo texto a desencriptar
-
 ## crear_venta
 
 Este método permitirá crear una venta en Culqi, para luego invocar el formulario según lo indicado por la documentación Culqi.
 Para que la creación de la venta sea exitosa, los siguientes atributos deberán haber sido seteados antes de llamar al método:
 
-culqi.numero_pedido
+venta.numero_pedido
 
-culqi.moneda
+venta.moneda
 
-culqi.monto
+venta.monto
 
-culqi.descripcion
+venta.descripcion
 
-culqi.correo_electronico
+venta.correo_electronico
 
-culqi.cod_pais
+venta.cod_pais
 
-culqi.ciudad
+venta.ciudad
 
-culqi.direccion
+venta.direccion
 
-culqi.num_tel
+venta.num_tel
 
-culqi.id_usuario_comercio
+venta.id_usuario_comercio
 
-culqi.nombres
+venta.nombres
 
-culqi.apellidos
+venta.apellidos
 
 
 Ejemplo:
