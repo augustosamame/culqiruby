@@ -45,7 +45,7 @@ module Culqi
     end
 
     def encryptor
-      @encryptor ||= Culqi::Encryptor.new(@key)
+      @encryptor ||= Culqi::Encryptor.new
     end
   end
 end

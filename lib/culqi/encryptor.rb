@@ -1,12 +1,10 @@
 require 'openssl'
 require 'base64'
-#require 'url_safe_base64'
 
 module Culqi
   class Encryptor
     def initialize(key)
-      @key = Base64.urlsafe_decode64(key)
-      #@key = UrlSafeBase64.decode64(key)
+      @key = Base64.urlsafe_decode64(ENV['CULQI_KEY'])
     end
 
     def encrypt(plaintext)
@@ -15,12 +13,10 @@ module Culqi
       decoded   = iv + cipher.update(plaintext) + cipher.final
 
       Base64.urlsafe_encode64(decoded)
-      #UrlSafeBase64.encode64(decoded)
     end
 
     def decrypt(encrypted)
       decoded     = Base64.urlsafe_decode64(encrypted)
-      #decoded     = UrlSafeBase64.decode64(encrypted)
       decipher    = build_cipher(:decrypt)
       decipher.iv = decoded.slice!(0, 16)
 

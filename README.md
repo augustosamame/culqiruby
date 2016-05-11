@@ -18,20 +18,22 @@ Or install it yourself as:
 
     $ gem install culqiruby
 
-## Forma de uso
+## Versiones
 
 La versión 1.x de este gem podrá ser usada en producción con la versión 1.0 del API de Culqi
-Compatible con Ruby versiones 2.2 y superior
+Compatible con Ruby versiones 1.9.2 y superior
 Compatible con Rails versiones 3.2 y superior
 
-Requerimientos: este gem requiere de la existencia de las siguientes environment variables en el ambiente de desarrollo / Pruebas / Producción:
+## Requerimientos
 
+Este gem requiere de la existencia de las siguientes environment variables en el ambiente de Desarrollo / Pruebas / Producción:
 
-CULQI_KEY="ingrese la llave entregada por Culqi aquí"
+CULQI_KEY="llave de encriptación entregada por Culqi"
 
-CULQI_ENDPOINT="ingrese el dominio del API de Culqi aquí"
+CULQI_ENDPOINT="dominio del API de Culqi"
 
-CULQI_CODIGO_COMERCIO="ingrese el código de comercio asignado por Culqi aquí"
+CULQI_CODIGO_COMERCIO="código de comercio asignado por Culqi"
+
 
 
 Para definir los environments variables en su ambiente recomendamos:
@@ -44,57 +46,48 @@ Rails:
 figaro gem
 https://github.com/laserlemon/figaro
 
+
+## Forma de Uso
+
+Los métodos de la clase Culqi deberán serán llamados luego de instanciar la clase:
+
+```ruby
+culqi = Culqi.default_client
+```
+
 ## Métodos
 
 ## crear_venta
 
-Este método permitirá crear una venta en Culqi, para luego invocar el formulario según lo indicado por la documentación Culqi.
-Para que la creación de la venta sea exitosa, los siguientes atributos deberán haber sido seteados antes de llamar al método:
+Este método permitirá crear una venta en Culqi, para luego invocar el formulario según lo indicado por la documentación de Culqi.
+Para que la creación de la venta sea exitosa, los siguientes atributos le deberán ser pasados al método como un hash:
 
-venta.numero_pedido
-
-venta.moneda
-
-venta.monto
-
-venta.descripcion
-
-venta.correo_electronico
-
-venta.cod_pais
-
-venta.ciudad
-
-venta.direccion
-
-venta.num_tel
-
-venta.id_usuario_comercio
-
-venta.nombres
-
-venta.apellidos
-
+numero_pedido, moneda, monto, descripcion, correo_electronico, cod_pais, ciudad, direccion, num_tel, id_usuario_comercio, nombres, apellidos
 
 Ejemplo:
 
 ```ruby
-#instanciamos la clase Culqiruby
+#instanciamos el cliente Culqi
 culqi = Culqi.default_client
 
 #creamos la venta
-venta = culqi.crear_venta numero_pedido:       '1234'
-                          moneda:              'PEN'
-                          monto:               '5000'
-                          descripcion:         'Venta de prueba'
-                          correo_electronico:  'augustosamame@gmail.com'
-                          cod_pais:            'PE'
-                          ciudad:              'Lima'
-                          direccion:           'Av. Javier Prado 1750, San Borja'
-                          num_tel:             '986977321'
-                          id_usuario_comercio: '1'
-                          nombres:             'Augusto'
-                          apellidos:           'Samamé'
+
+datos_venta = {
+              numero_pedido: '12367',
+              moneda: 'PEN',
+              monto: '5000',
+              descripcion: 'Venta de prueba',
+              correo_electronico: 'augustosamame@gmail.com',
+              cod_pais: 'PE',
+              ciudad: 'Lima',
+              direccion: 'Av Javier Prado 2320, San Borja',
+              num_tel: '986976309',
+              id_usuario_comercio: '2',
+              nombres: 'Augusto',
+              apellidos: 'Samame'
+              }
+              
+venta = culqi.crear_venta(datos_venta) 
 
 ```
 
@@ -110,11 +103,30 @@ Ej de respuesta con error
 {"mensaje_respuesta_usuario"=>"", "mensaje_respuesta"=>"La transacción ya existe. ", "codigo_respuesta"=>"parametro_invalido", "codigo_comercio"=>"3zMquUkbF5s8"}
 
 
-## Development
+## Encryptor Class
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Para poder utilizar los métodos de encriptación y desencriptación de Culqi, debemos instanciar la clase Culqi::Encryptor.
+Recuerde que el environment variable CULQI_KEY debe haber sido seteado para que esta clase funcione:
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+```ruby
+encryptor = Culqi::Encryptor.new
+```
+
+y esto expondrá los métodos: encrypt y decrypt
+
+```ruby
+texto_encriptado = encryptor.encrypt('Texto Prueba')
+
+=> "yozxCEGWPDw_uiHdsOXW-4EAuKDfCxCcd0GO2bESegE="
+
+texto_plano = encryptor.decrypt("yozxCEGWPDw_uiHdsOXW-4EAuKDfCxCcd0GO2bESegE=")
+
+=> "Texto Prueba"
+
+(su cadena encriptada será distinta ya que Culqi asigna una llave de encriptación distinta a cada cliente)
+```
+
 
 ## Contributing
 
