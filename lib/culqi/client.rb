@@ -41,7 +41,7 @@ module Culqi
 
       raise "#{ ERROR_MESSAGES[:failed_request] } #{ response.code }" unless response.code == '200'
 
-      JSON.parse(encryptor.decrypt(response))
+      JSON.parse(encryptor.decrypt(response.body))
     end
 
     def encryptor

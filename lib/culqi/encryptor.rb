@@ -1,5 +1,6 @@
 require 'openssl'
 require 'base64'
+require 'url_safe_base64'
 
 module Culqi
   class Encryptor
