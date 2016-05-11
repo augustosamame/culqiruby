@@ -10,11 +10,11 @@ Gem::Specification.new do |spec|
   spec.email         = ['augustosamame@gmail.com']
 
   spec.summary       = %q{Facilitates integration with Culqi payment processor}
-  spec.description   = %q{This gem allows your rails 3/4/5 app to quickly integrate with Culqi Payment processor.
+  spec.description   = %q{This gem allows your Ruby (1.9.2+) or Rails (3.2+) app to quickly integrate with Culqi Payment processor.
                           It handles Culqi's flavor of encryption, decryption and Culqi ticket creation.}
   spec.homepage      = 'https://github.com/augustosamame/culqiruby'
   spec.license       = 'MIT'
-
+  spec.required_ruby_version = '>= 1.9.2'
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
