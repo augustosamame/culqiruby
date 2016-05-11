@@ -20,9 +20,12 @@ Or install it yourself as:
 
 ## Versiones
 
-La versión 1.x de este gem podrá ser usada en producción con la versión 1.0 del API de Culqi
+La versión 1.x de este gem podrá ser usada en producción con la versión 1.x del API de Culqi
+
 Compatible con Ruby versiones 1.9.2 y superior
+
 Compatible con Rails versiones 3.2 y superior
+
 
 ## Requerimientos
 
@@ -38,9 +41,11 @@ CULQI_CODIGO_COMERCIO="código de comercio asignado por Culqi"
 
 Para definir los environments variables en su ambiente recomendamos:
 
+
 Ruby:
 dotenv gem
 https://github.com/bkeepers/dotenv
+
 
 Rails:
 figaro gem
@@ -49,7 +54,7 @@ https://github.com/laserlemon/figaro
 
 ## Forma de Uso
 
-Los métodos de la clase Culqi deberán serán llamados luego de instanciar la clase:
+Instanciamos el cliente Culqi para exponer sus métodos:
 
 ```ruby
 culqi = Culqi.default_client
@@ -106,14 +111,14 @@ Ej de respuesta con error
 ## Encryptor Class
 
 Para poder utilizar los métodos de encriptación y desencriptación de Culqi, debemos instanciar la clase Culqi::Encryptor.
-Recuerde que el environment variable CULQI_KEY debe haber sido seteado para que esta clase funcione:
+Recuerde que de acuerdo a los requerimientos del gem indicados arriba, el environment variable CULQI_KEY debe haber sido seteado para que esta clase funcione:
 
 
 ```ruby
 encryptor = Culqi::Encryptor.new
 ```
 
-y esto expondrá los métodos: encrypt y decrypt
+Esto expondrá los métodos: encrypt y decrypt
 
 ```ruby
 texto_encriptado = encryptor.encrypt('Texto Prueba')

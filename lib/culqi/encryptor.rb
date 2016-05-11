@@ -3,7 +3,7 @@ require 'base64'
 
 module Culqi
   class Encryptor
-    def initialize(key)
+    def initialize
       @key = Base64.urlsafe_decode64(ENV['CULQI_KEY'])
     end
 
