@@ -23,9 +23,11 @@ module Culqi
       attrs.each { |key, value| public_send("#{ key }=", value) }
     end
 
+#codigo_comercio:      ENV['CULQI_CODIGO_COMERCIO'],
+
     def payload
       {
-        codigo_comercio:      ENV['CULQI_CODIGO_COMERCIO'],
+        codigo_comercio:      '3zMquUkbF5s8',
         numero_pedido:        numero_pedido,
         moneda:               (moneda || DEFAULTS[:moneda]),
         monto:                monto,
