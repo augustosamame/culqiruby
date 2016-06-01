@@ -7,7 +7,7 @@ This gem allows your Rails or Ruby app to quickly integrate with Culqi Payment p
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'culqiruby'
+gem 'culqi'
 ```
 
 And then execute:
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install culqiruby
+    $ gem install culqi
 
 ## Versiones
 
@@ -91,8 +91,8 @@ datos_venta = {
               nombres: 'Augusto',
               apellidos: 'Samame'
               }
-              
-venta = culqi.crear_venta(datos_venta) 
+
+venta = culqi.crear_venta(datos_venta)
 
 ```
 
