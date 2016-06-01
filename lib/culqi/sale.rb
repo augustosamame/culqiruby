@@ -2,8 +2,7 @@ module Culqi
   class Sale
     DEFAULTS = {
       moneda:   'PEN',
-      cod_pais: 'PE',
-      codigo_comercio: ENV['CULQI_CODIGO_COMERCIO']
+      cod_pais: 'PE'
     }
 
     attr_accessor :codigo_comercio,
@@ -26,7 +25,7 @@ module Culqi
 
     def payload
       {
-        codigo_comercio:      (codigo_comercio || DEFAULTS[:codigo_comercio]),
+        codigo_comercio:      ENV['CULQI_CODIGO_COMERCIO'],
         numero_pedido:        numero_pedido,
         moneda:               (moneda || DEFAULTS[:moneda]),
         monto:                monto,
