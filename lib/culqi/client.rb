@@ -14,7 +14,6 @@ module Culqi
     end
 
     def crear_venta(attrs)
-      attrs.merge!(:codigo_comercio => ENV['CULQI_CODIGO_COMERCIO'])
       sale    = Culqi::Sale.new(attrs)
       request = http_request(sale.payload)
 

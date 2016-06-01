@@ -25,6 +25,7 @@ module Culqi
 
     def payload
       {
+        codigo_comercio:      (codigo_comercio || ENV['CULQI_CODIGO_COMERCIO']),
         numero_pedido:        numero_pedido,
         moneda:               (moneda || DEFAULTS[:moneda]),
         monto:                monto,
@@ -36,8 +37,7 @@ module Culqi
         num_tel:              num_tel[0..14],
         id_usuario_comercio:  id_usuario_comercio,
         nombres:              nombres[0..49],
-        apellidos:            apellidos[0..49],
-        codigo_comercio:      (codigo_comercio || ENV['CULQI_CODIGO_COMERCIO'])
+        apellidos:            apellidos[0..49]
       }.to_json
     end
   end
