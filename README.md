@@ -78,7 +78,7 @@ culqi = Culqi.default_client
 #creamos la venta
 
 datos_venta = {
-              codigo_comercio: ENV['CULQI_CODIGO_COMERCIO']
+              codigo_comercio: ENV['CULQI_CODIGO_COMERCIO'],
               numero_pedido: '12367',
               moneda: 'PEN',
               monto: '5000',
