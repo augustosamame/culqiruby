@@ -4,6 +4,7 @@ require 'base64'
 module Culqi
   class Encryptor
     def initialize
+      raise 'Invalid Culqi Key' unless resembles_base64(ENV['CULQI_KEY'])
       @key = Base64.urlsafe_decode64(ENV['CULQI_KEY'])
     end
 
@@ -31,5 +32,10 @@ module Culqi
       cipher.key = @key
       cipher
     end
+
+    def resembles_base64(mystring)
+      mystring.length % 4 == 0 && mystring =~ /^[A-Za-z0-9+\/=]+\Z/
+    end
+
   end
 end
