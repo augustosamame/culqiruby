@@ -21,7 +21,8 @@ module Culqi
       decipher    = build_cipher(:decrypt)
       decipher.iv = decoded.slice!(0, 16)
 
-      decipher.update(decoded) + decipher.final
+      decrypt_text = decipher.update(decoded) + decipher.final
+      decrypt_text.force_encoding('utf-8')
     end
 
     private
