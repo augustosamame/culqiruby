@@ -16,8 +16,9 @@ class EncryptorTest < Minitest::Test
     plaintext = 'test string'
     encrypted = encryptor.encrypt(plaintext)
 
-    decrypt_text = encryptor.decrypt(encrypted)
+    decrypted_text = encryptor.decrypt(encrypted)
 
-    assert_equal decrypt_text.encoding.name, 'UTF-8'
+    assert_equal decrypted_text.encoding.name, 'UTF-8'
+    assert_equal decrypted_text, 'test string'
   end
 end
