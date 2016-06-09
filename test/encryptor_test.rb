@@ -10,4 +10,15 @@ class EncryptorTest < Minitest::Test
 
     assert_equal plaintext, encryptor.decrypt(encrypted)
   end
+
+  def test_decrypt_encoding
+    encryptor = Culqi::Encryptor.new
+    plaintext = 'test string'
+    encrypted = encryptor.encrypt(plaintext)
+
+    decrypted_text = encryptor.decrypt(encrypted)
+
+    assert_equal decrypted_text.encoding.name, 'UTF-8'
+    assert_equal decrypted_text, 'test string'
+  end
 end
